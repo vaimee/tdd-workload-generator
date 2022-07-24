@@ -1,0 +1,20 @@
+{
+  "name": "workload-generator",
+  "version": "1.0.0",
+  "description": "simple workload generator to test Zion and TinyIoT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "workload-generator",
+    "iot",
+    "wot"
+  ],
+  "author": "Ivan Zyrianoff",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "mersenne-twister": "^1.1.0"
+  }
+}

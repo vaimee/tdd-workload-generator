@@ -88,7 +88,6 @@
     "selectedCapability": "Alarm",
     "iconHref": null,
     "group_id": null,
-    "id": "https://plugfest.webthings.io/things/virtual-things-21",
     "base": "https://plugfest.webthings.io/",
     "securityDefinitions": {
         "oauth2_sc": {

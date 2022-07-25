@@ -44,7 +44,6 @@
     "selectedCapability": "PushButton",
     "iconHref": null,
     "group_id": null,
-    "id": "https://plugfest.webthings.io/things/virtual-things-15",
     "base": "https://plugfest.webthings.io/",
     "securityDefinitions": {
         "oauth2_sc": {

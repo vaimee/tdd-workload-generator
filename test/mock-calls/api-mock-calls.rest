@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:3000/things?enriched=true&limit=10
+GET http://localhost:8081/things?enriched=true
 
 
 ### 
@@ -29,15 +29,15 @@ GET http://localhost:3000/search/jsonpath?query=%24%5B%3F%28%40.properties.senso
 Accept: application/json
 ####
 
-DELETE http://localhost:3000/things/urn:uuid:73745f43-28b8-4b2b-aa3a-e49f3b186c67
+DELETE http://localhost:3000/things/urn:dev:ops:32473-HueDaylight-1234
 
 ###
-GET http://localhost:3000/things?enriched=false
+GET http://localhost:8081/things?enriched=true
 
 ###
-POST http://localhost:3000/things
+PUT http://localhost:8081/things/urn:dev:ops:32473-HueDaylight-1234
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY1ODcwMTM3MSwiZXhwIjoxNjU4NzAyMjcxfQ.i-ZLCdtK9TGzUWsNUx_dPq7NyjGHd858otBxInjmNV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY1ODc0MDQ1NiwiZXhwIjoxNjU4NzQxMzU2fQ.dDJjtKU4QOgUbSV1A5_6YoGHa6m5MMHD3U_CbeFVbbE
 
 {
     "@context": ["https://www.w3.org/2019/wot/td/v1", "https://www.w3.org/2022/wot/td/v1.1", {

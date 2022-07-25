@@ -1,0 +1,9 @@
+
+###
+GET http://localhost:3000/search/jsonpath?query=%24%5B%3F%28%40.properties.lightColor%29%5D
+###
+GET http://localhost:3000/search/jsonpath?query=%24%5B%3F%28%40.properties.lightColor%20%26%26%20%40.properties.brightness%29%5D
+###
+GET http://localhost:3000/search/jsonpath?query=%24%5B%3F%28%40.properties.sensorInformation%29%5D.properties..state
+###
+GET http://localhost:8081/search/jsonpath?query=%24%5B%3F%28%40.title%20%20%3D~%20%2F%5E.%2Aday.%2A%24%2Fi%29%5D

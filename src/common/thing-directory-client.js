@@ -38,7 +38,7 @@ class ThingDirectoryClient {
     const deleteUrl = `${this.#url}/things/${id}`;
     try {
       const response = await axios.delete(deleteUrl, this.#options);
-      console.log(`${id} thing deleted`);
+      //console.log(`${id} thing deleted`);
       return response;
     } catch (error) {
       if (error.response.status !== 401) {
@@ -47,6 +47,17 @@ class ThingDirectoryClient {
       }
       await this.authLogin();
       await this.delete(id);
+    }
+  }
+
+  async jsonpathQuery(rawquery) {
+    const query = encodeURIComponent(rawquery);
+    const jsonpathQueryUrl = `${this.#url}/search/jsonpath?query=${query}`;
+    try {
+      return await axios.get(jsonpathQueryUrl, this.#options);
+    } catch (error) {
+      console.log('*** JSONPATH ERROR ***');
+      console.log(error);
     }
   }
 
@@ -84,14 +95,14 @@ class ThingDirectoryClient {
     if (!thing.id) throw Error(`${thing.title} does not have an id`);
     const createThingUrl = `${this.#url}/things/${thing.id}`;
     await axios.put(createThingUrl, thing, this.#options);
-    console.info(`${thing.title} successful created`);
+    //console.info(`${thing.title} successful created`);
     return true;
   }
 
   async #createThingAnomymous(thing) {
     const createThingUrl = `${this.#url}/things`;
     await axios.post(createThingUrl, thing, this.#options);
-    console.info(`${thing.title} successful created`);
+    //console.info(`${thing.title} successful created`);
     return true;
   }
 }

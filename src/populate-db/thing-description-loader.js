@@ -33,7 +33,6 @@ class ThingDescriptionLoader {
           directoryPath,
           filename,
         );
-        //console.log(thingDescription);
         this.thingDescriptions[directory].push(thingDescription);
       }
     } catch (error) {

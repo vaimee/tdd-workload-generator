@@ -1,10 +1,6 @@
-const { Random } = require('../common/random');
 const { ThingDescriptionLoader } = require('./thing-description-loader');
-const { ThingDirectoryClient } = require('./thing-directory-client');
+const { ThingDirectoryClient } = require('../common/thing-directory-client');
 
-Random.setSeed(process.env.SEED);
-
-const thingDescriptionLoader = new ThingDescriptionLoader();
 const thingDirectoryClient = new ThingDirectoryClient();
 
 const reset = async () => {
@@ -21,15 +17,28 @@ const reset = async () => {
   }
 };
 
-const start = async () => {
+const checkSize = async (size) => {
+  const response = await thingDirectoryClient.getAll();
+  if (response.data.length === size) return true;
+  return false;
+};
+
+const populate = async () => {
   await reset();
+  const thingDescriptionLoader = new ThingDescriptionLoader();
   await thingDescriptionLoader.load();
   const numberofThingDescriptions = process.env.NUMBER_OF_THING_DESCRIPTIONS;
   for (let i = 0; i <= numberofThingDescriptions; ) {
     const randomThing = thingDescriptionLoader.getRandomThing();
-    const createThing = await thingDirectoryClient.createThing(randomThing)
+    const createThing = await thingDirectoryClient.createThing(randomThing);
     if (createThing) i++;
   }
+  if (!checkSize(numberofThingDescriptions))
+    throw new Error('number of TDs is not as defined');
+  console.log(`${numberofThingDescriptions} TDs created!`);
+  return;
 };
 
-start().then().catch(console.error);
+//populate().then().catch(console.error);
+
+module.exports = populate;

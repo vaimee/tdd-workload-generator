@@ -4,7 +4,7 @@
   "description": "simple workload generator to test Zion and TinyIoT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/workload-generator"
   },
   "keywords": [
     "workload-generator",

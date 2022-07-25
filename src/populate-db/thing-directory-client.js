@@ -37,7 +37,9 @@ class ThingDirectoryClient {
   async delete(id) {
     const deleteUrl = `${this.#url}/things/${id}`;
     try {
-      return await axios.delete(deleteUrl, this.#options);
+      const response = await axios.delete(deleteUrl, this.#options);
+      console.log(`${id} thing deleted`);
+      return response;
     } catch (error) {
       if (error.response.status !== 401) {
         console.log(error.response);
@@ -59,11 +61,10 @@ class ThingDirectoryClient {
   }
 
   async createThing(thing) {
-    const createThingUrl = `${this.#url}/things`;
     try {
-      await axios.post(createThingUrl, thing, this.#options);
-      console.info(`${thing.title} successful created`);
-      return true;
+      return thing.id
+        ? await this.#createThingWithId(thing)
+        : await this.#createThingAnomymous(thing);
     } catch (error) {
       switch (error.response.status) {
         case 401:
@@ -77,6 +78,21 @@ class ThingDirectoryClient {
           throw Error(error);
       }
     }
+  }
+
+  async #createThingWithId(thing) {
+    if (!thing.id) throw Error(`${thing.title} does not have an id`);
+    const createThingUrl = `${this.#url}/things/${thing.id}`;
+    await axios.put(createThingUrl, thing, this.#options);
+    console.info(`${thing.title} successful created`);
+    return true;
+  }
+
+  async #createThingAnomymous(thing) {
+    const createThingUrl = `${this.#url}/things`;
+    await axios.post(createThingUrl, thing, this.#options);
+    console.info(`${thing.title} successful created`);
+    return true;
   }
 }
 

@@ -15,7 +15,7 @@ const record = async (time, replication) => {
     __dirname,
     `../../assets/experiment-results/raw/${filename}.csv`,
   );
-  await appendFile(directoryPath, `${processingTime}\n`)
+  await appendFile(directoryPath, `${processingTime}\n`);
 };
 
 const recordAverage = async () => {
